@@ -1,22 +1,26 @@
-.channels__column {
-  display: inline-block;
-  vertical-align: top;
+.channel {
+  position: relative;
+  width: 0;
+  height: 0;
 }
 
 .channel-logo {
-  margin: 10px 15px;
+  position: absolute;
+  top: -20px;
+  left: -20px;
   height: 40px;
-  width: 30px;
+  width: 40px;
   background-color: #ccc;
   background-position: center;
-  background-size: cover;
-  border-radius: 25% / 30%;
+  background-size: contain;
+  border-radius: 50%;
 }
 
 .on {
-  filter: drop-shadow(0 0 0.5em #eee);
+  box-shadow: 0 0 0 3px #fff;
 }
 
 .off {
-  filter: grayscale(1) contrast(1.5) brightness(0.8);
+  filter: grayscale(1) contrast(1.5) brightness(0.85);
+  box-shadow: 0 0 0 3px #fff;
 }

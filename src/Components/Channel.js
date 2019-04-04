@@ -1,18 +1,19 @@
 import React from "react";
 
-export default ({ src, scale = 1 }) => {
+export default ({ id, pos, scale = 1 }) => {
   const [active, setActive] = React.useState(true);
-  const isOff = active ? "on" : "off";
+  const isActive = active ? "on" : "off";
   const style = {
-    width: `${40 * scale}px`,
-    height: `${30 * scale}px`,
-    backgroundImage: `url(${src})`
+    transform: `scale(${scale})`,
+    backgroundImage: `url(./src/assets/logos/${id}.png)`
   };
   return (
-    <div
-      className={`channel-logo ${isOff}`}
-      style={style}
-      onClick={() => setActive(!active)}
-    />
+    <div className="channel" style={pos}>
+      <div
+        className={`channel-logo ${isActive}`}
+        style={style}
+        onClick={() => setActive(!active)}
+      />
+    </div>
   );
 };
