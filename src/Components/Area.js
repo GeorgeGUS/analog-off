@@ -14,8 +14,11 @@ export default class Area extends Component {
     const { feature } = this.state;
     const areaCoords = feature.geometry.coordinates[0];
     const mapBounds = ymaps.util.bounds.fromPoints(areaCoords);
+    console.log('ref.geometry', ref)
+
     // // Находим оптимальный центр и уровень масштабирования карты.
     const map = ref.getMap();
+    console.log('map.getType()', map.getType())
     ymaps.util
       .requireCenterAndZoom(
         map.getType(),
@@ -39,6 +42,29 @@ export default class Area extends Component {
       })
   }
 
+  setCenter2 = ref => {
+    // console.log(ref)
+    if (this._isMounted) {
+      const { ymaps } = this.props;
+      const { feature } = this.state;
+      const map = ref.getMap();
+      console.log('map', map)
+      const areaCoords = feature.geometry.coordinates[0];
+      const mapBounds = ymaps.util.bounds.fromPoints(areaCoords);
+      // console.log('ref.geometry', ref.geometry.getBounds())
+      console.log('map size', map.container.getSize())
+      console.log('mapBounds', mapBounds)
+      const result = ymaps.util.bounds.getCenterAndZoom(
+        mapBounds,
+        // ref.geometry.getBounds(),
+        map.container.getSize()
+      );
+
+      // Setting the optimal center and zoom level of the map.
+      map.setCenter(result.center, result.zoom);
+    }
+  }
+
   createArea = (geojson) => {
     const NOV_OBL_INDEX = 32;
     const feature = geojson.features[NOV_OBL_INDEX];
@@ -53,7 +79,7 @@ export default class Area extends Component {
       openHintOnHover: false
     }
 
-    if (this._isMounted === true) {
+    if (this._isMounted) {
       this.setState({ feature });
     }
   }
