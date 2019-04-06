@@ -15,13 +15,18 @@ class App extends Component {
     this.setState({ zoom });
   }
 
+  handleRef = (ref) => {
+    ref.behaviors.disable(['drag', 'scrollZoom', 'dblClickZoom']);
+  }
+
   render() {
     const { zoom } = this.state;
     return (
       <YMaps>
-        <Map state={this.state} options={{
-          avoidFractionalZoom: false
-        }} width='100vw' height='100vh'>
+        <Map state={this.state}
+          options={{ avoidFractionalZoom: false }}
+          instanceRef={this.handleRef}
+          width='100vw' height='100vh'>
           <Area updateZoom={this.updateZoom} />
           <Pins pins={pins} zoom={zoom} />
         </Map>
