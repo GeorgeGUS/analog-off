@@ -31,27 +31,28 @@ export default class Channels extends React.Component {
   }
 
   renderChannels() {
-    const { channels, city, scale } = this.props;
-    // const n = channels.length;
-    return channels.map(({ id }, i) => {
-      // const pos = this.getCirclePosition(n, i);
-      const props = { id, scale };
-      return <Channel key={`${city}_${id}`} {...props} />;
-    });
+    const { channels, city } = this.props;
+    return channels.map(({ id }) => (
+      <Channel key={`${city}_${id}`} id={id} />
+    ));
   }
 
   render() {
-    const { city, center: [x, y] } = this.props;
+    const { city, scale, center: [x, y] } = this.props;
     const pos = {
       position: "absolute",
       left: `${x}px`,
       top: `${y}px`,
     }
+    const zoom = {
+      transform: `scale(${scale})`,
+      transformOrigin: 'top center'
+    }
     return (
       <div key={city} className="city" style={pos}>
         {this.renderFlagIcon()}
         <b className="city__title">{city}</b>
-        <div className="channels">
+        <div className="channels" style={zoom}>
           {this.renderChannels()}
         </div>
       </div>

@@ -3,7 +3,7 @@ import { ObjectManager, withYMaps } from 'react-yandex-maps'
 import Channels from './Channels'
 
 class Pins extends Component {
-  static defaultProps = { pinScaleRatio: 7 }
+  static defaultProps = { pinScaleRatio: 8 }
   state = { channels: null, ref: null }
 
   componentDidMount() {

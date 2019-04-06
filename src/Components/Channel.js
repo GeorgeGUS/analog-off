@@ -1,20 +1,17 @@
 import React from "react";
-const logosPath = process.env.PUBLIC_URL + '/assets/logos/';
+const logosPath = `${process.env.PUBLIC_URL}/assets/channels/svg/`;
 
-export default ({ id, pos, scale = 1 }) => {
+export default ({ id, scale = 1 }) => {
   const [active, setActive] = React.useState(true);
   const isActive = active ? "on" : "off";
   const style = {
-    '--scale': scale,
-    backgroundImage: `url('${logosPath}${id}.png')`
+    backgroundImage: `url('${logosPath}${id}.svg')`
   };
   return (
-    <div className="channel" style={pos}>
-      <div
-        className={`channel__logo ${isActive} ${id}`}
+    <div
+        className={`channel ${isActive} ${id}`}
         style={style}
         onClick={() => setActive(!active)}
       />
-    </div>
   );
 };
