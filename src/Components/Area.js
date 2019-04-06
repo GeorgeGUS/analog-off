@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { ObjectManager } from 'react-yandex-maps';
+import { ObjectManager, withYMaps } from 'react-yandex-maps';
 
-export default class Area extends Component {
+class Area extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,14 +10,10 @@ export default class Area extends Component {
   }
 
   setCenter = (ref) => {
-    const { ymaps } = this.props;
+    const { ymaps, updateZoom } = this.props;
     const { feature } = this.state;
     const areaCoords = feature.geometry.coordinates[0];
     const mapBounds = ymaps.util.bounds.fromPoints(areaCoords);
-    // console.log('ref.geometry', ref)
-
-    // // Находим оптимальный центр и уровень масштабирования карты.
-    // console.log('map.getType()', map.getType())
     const map = ref.getMap();
     ymaps.util
       .requireCenterAndZoom(
@@ -29,31 +25,10 @@ export default class Area extends Component {
           preciseZoom: true
         }
       )
-      .then(function (result) {
-        // Устанавливаем карте оптимальный центр и зум.
-        map.setCenter(result.center, result.zoom)
-        console.log(result)
-      })
-  }
-
-  setCenter2 = (ref) => {
-    if (this._isMounted) {
-      const { ymaps } = this.props;
-      const { feature } = this.state;
-      const map = ref.getMap();
-      console.log('map', map)
-      const areaCoords = feature.geometry.coordinates[0];
-      const mapBounds = ymaps.util.bounds.fromPoints(areaCoords);
-      console.log('map size', map.container.getSize())
-      console.log('mapBounds', mapBounds)
-      const result = ymaps.util.bounds.getCenterAndZoom(
-        mapBounds,
-        map.container.getSize()
-      );
-
-      // Setting the optimal center and zoom level of the map.
-      map.setCenter(result.center, result.zoom);
-    }
+      .then(result => {
+        map.setCenter(result.center, result.zoom);
+        updateZoom(result.zoom);
+      });
   }
 
   createArea = (geojson) => {
@@ -95,9 +70,10 @@ export default class Area extends Component {
       <ObjectManager
         objects={{}} clusters={{}}
         features={feature}
-        instanceRef={this.setCenter2}
+        instanceRef={this.setCenter}
       />
     )
   }
 }
-// instanceRef={ref => ref && this.setCenter(ref)}
+export default withYMaps(Area, true, ['borders', 'util.bounds', 'util.requireCenterAndZoom']);
+

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { ObjectManager } from 'react-yandex-maps'
+import { ObjectManager, withYMaps } from 'react-yandex-maps'
 import Channels from './Channels'
 // import pinImage from '../assets/logos/ch_1.png'
 
-export default class Pins extends Component {
-  state = { channels: null }
+class Pins extends Component {
+  state = { channels: null, ref: null }
+
   getPinsObject() {
     const { pins } = this.props;
     const features = pins.map(pin => ({
@@ -33,19 +34,32 @@ export default class Pins extends Component {
     this._isMounted = true;
   }
 
-  renderPinChannels = (ref) => {
-    const { pins } = this.props;
-    console.log('pins ref', ref)
-    const map = ref.getMap();
-    const channels = pins.map(pin => {
-      const { city, channels, lat, len } = pin;
-      console.log(city)
-      const projection = map.options.get('projection');
-      const center = map.converter.globalToPage(projection.toGlobalPixels([lat, len], map.getZoom()));
-      return <Channels key={city} city={city} channels={channels} center={center} scale={0.5} />;
-    });
+  handleRef = (ref) => {
+    this.setState({ ref });
+    const { zoom } = this.props;
+    this.renderPinChannels(ref, zoom);
+  }
+
+  shouldComponentUpdate({ zoom }) {
+    if (this.props.zoom !== zoom) {
+      this.renderPinChannels(this.state.ref, zoom);
+    }
+    return true;
+  }
+
+  renderPinChannels = (ref, zoom) => {
     if (this._isMounted) {
-      this.setState({ channels })
+      const { pins } = this.props;
+      const map = ref.getMap();
+      const channels = pins.map(pin => {
+        const { city, channels, lat, len } = pin;
+        const projection = map.options.get('projection');
+        const center = map.converter.globalToPage(projection.toGlobalPixels([lat, len], zoom));
+        const scale = zoom / 8;
+        const props = { city, channels, center, scale };
+        return <Channels key={city} {...props} />;
+      });
+      this.setState({ channels });
     }
   }
 
@@ -61,9 +75,11 @@ export default class Pins extends Component {
           }}
           clusters={{}}
           features={this.getPinsObject()}
-          instanceRef={this.renderPinChannels}
+          instanceRef={this.handleRef}
         />
       </div>
     );
   }
 }
+
+export default withYMaps(Pins, true);

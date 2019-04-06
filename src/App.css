@@ -6,10 +6,10 @@
 
 .channel-logo {
   position: absolute;
-  top: -20px;
-  left: -20px;
-  height: 40px;
-  width: 40px;
+  top: -10px;
+  left: -10px;
+  height: 20px;
+  width: 20px;
   background-color: #ccc;
   background-position: center;
   background-size: contain;
@@ -18,10 +18,10 @@
 }
 
 .on {
-  box-shadow: 0 0 0 3px #fff;
+  box-shadow: 0 0 0 2px #fff;
 }
 
 .off {
   filter: grayscale(1) contrast(1.5) brightness(0.85);
-  box-shadow: 0 0 0 3px #fff;
+  box-shadow: 0 0 0 2px #fff;
 }
