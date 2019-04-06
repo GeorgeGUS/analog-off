@@ -14,11 +14,11 @@ export default class Area extends Component {
     const { feature } = this.state;
     const areaCoords = feature.geometry.coordinates[0];
     const mapBounds = ymaps.util.bounds.fromPoints(areaCoords);
-    console.log('ref.geometry', ref)
+    // console.log('ref.geometry', ref)
 
     // // Находим оптимальный центр и уровень масштабирования карты.
+    // console.log('map.getType()', map.getType())
     const map = ref.getMap();
-    console.log('map.getType()', map.getType())
     ymaps.util
       .requireCenterAndZoom(
         map.getType(),
@@ -32,18 +32,11 @@ export default class Area extends Component {
       .then(function (result) {
         // Устанавливаем карте оптимальный центр и зум.
         map.setCenter(result.center, result.zoom)
-        console.log('map', map)
         console.log(result)
-
-        // создаём событие для обновления зума и координат
-        // const evt = new Event('updateZoom')
-        // window.dispatchEvent(evt)
-        console.log('Карта области загружена')
       })
   }
 
-  setCenter2 = ref => {
-    // console.log(ref)
+  setCenter2 = (ref) => {
     if (this._isMounted) {
       const { ymaps } = this.props;
       const { feature } = this.state;
@@ -51,12 +44,10 @@ export default class Area extends Component {
       console.log('map', map)
       const areaCoords = feature.geometry.coordinates[0];
       const mapBounds = ymaps.util.bounds.fromPoints(areaCoords);
-      // console.log('ref.geometry', ref.geometry.getBounds())
       console.log('map size', map.container.getSize())
       console.log('mapBounds', mapBounds)
       const result = ymaps.util.bounds.getCenterAndZoom(
         mapBounds,
-        // ref.geometry.getBounds(),
         map.container.getSize()
       );
 
@@ -86,14 +77,11 @@ export default class Area extends Component {
 
   componentDidMount() {
     this._isMounted = true;
-    console.log('componentDidMount');
     this.props.ymaps.borders.load('RU', { quality: 2 })
       .then(geojson => this.createArea(geojson));
   }
 
   componentWillUnmount() {
-    console.log('componentDidUnmount');
-
     this._isMounted = false;
   }
 
@@ -107,7 +95,7 @@ export default class Area extends Component {
       <ObjectManager
         objects={{}} clusters={{}}
         features={feature}
-        instanceRef={ref => ref && this.setCenter(ref)}
+        instanceRef={this.setCenter2}
       />
     )
   }
