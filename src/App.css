@@ -1,6 +1,6 @@
 .city {
   --scale: 1;
-  max-width: 80px;
+  max-width: 90px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,12 +14,15 @@
 }
 
 .city__title {
-  margin-bottom: 3px;
-  font-size: 17px;
-  line-height: 1.1;
+  margin-bottom: 5px;
+  font-size: 18px;
+  line-height: 1;
   font-weight: 700;
-  color: #333333;
-  text-shadow: 0 0 5px #ffffff, 0 0 5px #ffffff, 0 0 5px #ffffff;
+  color: #222;
+  text-shadow: 
+    0 0 4px #fff,
+    0 0 4px #fff,
+    0 0 4px #fff;
 }
 
 .channels {
@@ -44,8 +47,8 @@
 .ch_6,
 .ch_7 {
   order: 1;
-  width: 70px;
-  height: 18px;
+  width: 80px;
+  height: 20px;
 }
 
 .ch_3,
