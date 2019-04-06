@@ -1,7 +1,7 @@
 import React from "react";
 const logosPath = `${process.env.PUBLIC_URL}/assets/channels/svg/`;
 
-export default ({ id, scale = 1 }) => {
+export default ({ id, title }) => {
   const [active, setActive] = React.useState(true);
   const isActive = active ? "on" : "off";
   const style = {
@@ -9,8 +9,9 @@ export default ({ id, scale = 1 }) => {
   };
   return (
     <div
-        className={`channel ${isActive} ${id}`}
+        className={`channel ${id} ${isActive}`}
         style={style}
+        aria-label={title}
         onClick={() => setActive(!active)}
       />
   );
