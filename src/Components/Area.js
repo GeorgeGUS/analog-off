@@ -5,16 +5,28 @@ class Area extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      feature: null
+      feature: null,
+      ref: null
     };
+    this.NovOblIndex = 32;
+  }
+
+  handleRef = (ref) => {
+    this.setState({ ref });
+    this.setCenter(ref);
+  }
+
+  handleResize = () => {
+    const { ref } = this.state;
+    this.setCenter(ref);
   }
 
   setCenter = (ref) => {
+    const map = ref.getMap();
     const { ymaps, updateZoom } = this.props;
     const { feature } = this.state;
     const areaCoords = feature.geometry.coordinates[0];
     const mapBounds = ymaps.util.bounds.fromPoints(areaCoords);
-    const map = ref.getMap();
     ymaps.util
       .requireCenterAndZoom(
         map.getType(),
@@ -32,9 +44,7 @@ class Area extends Component {
   }
 
   createArea = (geojson) => {
-    const NOV_OBL_INDEX = 32;
-    const feature = geojson.features[NOV_OBL_INDEX];
-
+    const feature = geojson.features[this.NovOblIndex];
     feature.id = feature.properties.iso3166;
     feature.options = {
       strokeWidth: 4,
@@ -44,7 +54,6 @@ class Area extends Component {
       fillOpacity: 0.4,
       openHintOnHover: false
     }
-
     if (this._isMounted) {
       this.setState({ feature });
     }
@@ -54,10 +63,12 @@ class Area extends Component {
     this._isMounted = true;
     this.props.ymaps.borders.load('RU', { quality: 2 })
       .then(geojson => this.createArea(geojson));
+    window.addEventListener('resize', this.handleResize);
   }
 
   componentWillUnmount() {
     this._isMounted = false;
+    window.removeEventListener('resize', this.handleResize);
   }
 
   render() {
@@ -66,7 +77,7 @@ class Area extends Component {
       <ObjectManager
         objects={{}} clusters={{}}
         features={feature}
-        instanceRef={this.setCenter}
+        instanceRef={this.handleRef}
       />
     )
   }

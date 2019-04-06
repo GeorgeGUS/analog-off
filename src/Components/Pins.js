@@ -8,6 +8,12 @@ class Pins extends Component {
 
   componentDidMount() {
     this._isMounted = true;
+    window.addEventListener('resize', this.handleResize);
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+    window.removeEventListener('resize', this.handleResize);
   }
 
   handleRef = (ref) => {
@@ -16,9 +22,15 @@ class Pins extends Component {
     this.renderPinChannels(ref, zoom);
   }
 
-  shouldComponentUpdate({ zoom }) {
+  handleResize = () => {
+    const { ref } = this.state;
+    const { zoom } = this.props;
+    this.renderPinChannels(ref, zoom);
+  }
+
+  shouldComponentUpdate({ zoom }, { ref }) {
     if (this.props.zoom !== zoom) {
-      this.renderPinChannels(this.state.ref, zoom);
+      this.renderPinChannels(ref, zoom);
     }
     return true;
   }
