@@ -5,13 +5,13 @@ export default ({ id, pos, scale = 1 }) => {
   const [active, setActive] = React.useState(true);
   const isActive = active ? "on" : "off";
   const style = {
-    transform: `scale(${scale})`,
+    '--scale': scale,
     backgroundImage: `url('${logosPath}${id}.png')`
   };
   return (
     <div className="channel" style={pos}>
       <div
-        className={`channel-logo ${isActive} ${id}`}
+        className={`channel__logo ${isActive} ${id}`}
         style={style}
         onClick={() => setActive(!active)}
       />

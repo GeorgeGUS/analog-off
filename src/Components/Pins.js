@@ -1,34 +1,10 @@
 import React, { Component } from 'react'
 import { ObjectManager, withYMaps } from 'react-yandex-maps'
 import Channels from './Channels'
-// import pinImage from '../assets/logos/ch_1.png'
 
 class Pins extends Component {
+  static defaultProps = { pinScaleRatio: 7 }
   state = { channels: null, ref: null }
-
-  getPinsObject() {
-    const { pins } = this.props;
-    const features = pins.map(pin => ({
-      type: 'Feature',
-      id: pin.city,
-      geometry: {
-        type: 'Point',
-        coordinates: [pin.lat, pin.len]
-      },
-      options: {
-        // iconLayout: 'default#image',
-        // iconImageHref: pinImage,
-      },
-      properties: {
-        hintContent: pin.city
-      }
-    }));
-
-    return {
-      type: 'FeatureCollection',
-      features
-    }
-  }
 
   componentDidMount() {
     this._isMounted = true;
@@ -49,13 +25,13 @@ class Pins extends Component {
 
   renderPinChannels = (ref, zoom) => {
     if (this._isMounted) {
-      const { pins } = this.props;
+      const { pins, pinScaleRatio } = this.props;
       const map = ref.getMap();
       const channels = pins.map(pin => {
         const { city, channels, lat, len } = pin;
         const projection = map.options.get('projection');
         const center = map.converter.globalToPage(projection.toGlobalPixels([lat, len], zoom));
-        const scale = zoom / 8;
+        const scale = zoom / pinScaleRatio;
         const props = { city, channels, center, scale };
         return <Channels key={city} {...props} />;
       });
@@ -66,18 +42,14 @@ class Pins extends Component {
   render() {
     const { channels } = this.state;
     return (
-      <div>
-        {channels}
+      <>
         <ObjectManager
-          objects={{
-            preset: 'islands#circleDotIcon',
-            iconColor: '#3c3'
-          }}
+          objects={{}}
           clusters={{}}
-          features={this.getPinsObject()}
           instanceRef={this.handleRef}
         />
-      </div>
+        {channels}
+      </>
     );
   }
 }

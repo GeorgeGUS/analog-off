@@ -62,11 +62,7 @@ class Area extends Component {
 
   render() {
     const { feature } = this.state;
-    if (feature == null) {
-      return <p>Loading area...</p>;
-    }
-
-    return (
+    return feature && (
       <ObjectManager
         objects={{}} clusters={{}}
         features={feature}
