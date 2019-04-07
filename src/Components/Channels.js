@@ -31,7 +31,7 @@ export default class Channels extends React.Component {
     return (
       <div key={city} className="city" style={pos}>
         {this.renderFlagIcon()}
-        <b className="city__title">{city}</b>
+        <p className="city__title">{city}</p>
         <div className="channels" style={zoom}>
           {channels.map((ch) => (
             <Channel key={`${city}_${ch.id}`} {...ch} />
