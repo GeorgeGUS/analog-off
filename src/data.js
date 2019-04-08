@@ -2,7 +2,7 @@ export default [
   {
     city: "Анциферово",
     lat: 58.965723,
-    len: 34.010621,
+    len: 33.960621,
     channels: [
       {
         id: "ch_3",
@@ -54,7 +54,7 @@ export default [
   },
   {
     city: "Валдай",
-    lat: 57.978097,
+    lat: 57.938097,
     len: 33.251152,
     channels: [
       {
@@ -89,8 +89,8 @@ export default [
   },
   {
     city: "Великий Новгород",
-    lat: 58.52075,
-    len: 31.287064,
+    lat: 58.480075,
+    len: 31.267064,
     channels: [
       {
         id: "ch_4",
@@ -116,7 +116,7 @@ export default [
   },
   {
     city: "Волот",
-    lat: 57.927807,
+    lat: 57.944807,
     len: 30.70677,
     channels: [
       {
@@ -131,7 +131,7 @@ export default [
   },
   {
     city: "Демянск",
-    lat: 57.642859,
+    lat: 57.632859,
     len: 32.464423,
     channels: [
       {
@@ -173,8 +173,8 @@ export default [
   },
   {
     city: "Кабожа",
-    lat: 58.796633,
-    len: 35.037638,
+    lat: 58.829633,
+    len: 34.955638,
     channels: [
       {
         id: "ch_1",
@@ -192,7 +192,7 @@ export default [
   },
   {
     city: "Крестцы",
-    lat: 58.249915,
+    lat: 58.259915,
     len: 32.520251,
     channels: [
       {
@@ -242,7 +242,7 @@ export default [
   },
   {
     city: "Малая Вишера",
-    lat: 58.8436,
+    lat: 58.836,
     len: 32.218255,
     channels: [
       {
@@ -265,7 +265,7 @@ export default [
   },
   {
     city: "Мошенское",
-    lat: 58.512498,
+    lat: 58.500448,
     len: 34.580844,
     channels: [
       {
@@ -315,8 +315,8 @@ export default [
   },
   {
     city: "Пролетарий",
-    lat: 58.448386,
-    len: 31.722703,
+    lat: 58.400386,
+    len: 31.762703,
     channels: [
       {
         id: "ch_1",
@@ -338,7 +338,7 @@ export default [
   },
   {
     city: "Сольцы",
-    lat: 58.120168,
+    lat: 58.110168,
     len: 30.309355,
     channels: [
       {
@@ -361,7 +361,7 @@ export default [
   },
   {
     city: "Старая Русса",
-    lat: 57.993704,
+    lat: 57.980704,
     len: 31.348283,
     channels: [
       {
@@ -384,7 +384,7 @@ export default [
   },
   {
     city: "Хвойная",
-    lat: 58.896645,
+    lat: 58.906645,
     len: 34.491507,
     channels: [
       {
@@ -415,7 +415,7 @@ export default [
   },
   {
     city: "Холм",
-    lat: 57.148491,
+    lat: 57.158491,
     len: 31.177777,
     channels: [
       {
@@ -430,8 +430,8 @@ export default [
   },
   {
     city: "Чудово",
-    lat: 59.123071,
-    len: 31.641284,
+    lat: 59.113071,
+    len: 31.681284,
     channels: [
       {
         id: "ch_3",
