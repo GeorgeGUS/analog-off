@@ -1,8 +1,8 @@
 import React from "react";
 import Channel from "./Channel";
 
-export default class Channels extends React.Component {
-  static defaultProps = { radius: 25, center: [0, 0], scale: 1 };
+export default class City extends React.Component {
+  static defaultProps = { radius: 25, center: [0, 0], baseWidth: 1920 };
 
   state = { isActive: true }
 
@@ -18,21 +18,19 @@ export default class Channels extends React.Component {
   }
 
   render() {
-    const { city, channels, scale, center: [x, y] } = this.props;
+    const { city, channels, baseWidth, center: [x, y] } = this.props;
+    const scale = window.innerWidth / baseWidth;
     const pos = {
       position: "absolute",
       left: `${x}px`,
       top: `${y}px`,
-    }
-    const zoom = {
-      transform: `scale(${scale})`,
-      transformOrigin: 'top center'
+      transform: `translate(-50%, -50%) scale(${scale})`,
     }
     return (
       <div key={city} className="city" style={pos}>
         {this.renderFlagIcon()}
         <p className="city__title">{city}</p>
-        <div className="channels" style={zoom}>
+        <div className="channels">
           {channels.map((ch) => (
             <Channel key={`${city}_${ch.id}`} {...ch} />
           ))}

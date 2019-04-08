@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { YMaps, Map } from 'react-yandex-maps';
 import Area from './Components/Area';
-import Pins from './Components/Pins'
-import pins from './data';
+import Cities from './Components/Cities'
+import cities from './data';
 import './App.css';
 
 class App extends Component {
@@ -28,7 +28,7 @@ class App extends Component {
           instanceRef={this.handleRef}
           width='100vw' height='100vh'>
           <Area updateZoom={this.updateZoom} />
-          <Pins pins={pins} zoom={zoom} />
+          <Cities cities={cities} zoom={zoom} />
         </Map>
       </YMaps>
     );

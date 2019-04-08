@@ -9,10 +9,10 @@ export default ({ id, title }) => {
   };
   return (
     <div
-        className={`channel ${id} ${isActive}`}
-        style={style}
-        aria-label={title}
-        onClick={() => setActive(!active)}
-      />
+      className={`channel ${id} ${isActive}`}
+      style={style}
+      aria-label={title}
+      onClick={() => setActive(!active)}
+    />
   );
 };

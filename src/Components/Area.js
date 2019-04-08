@@ -33,7 +33,7 @@ class Area extends Component {
         mapBounds,
         map.container.getSize(),
         {
-          margin: 5,
+          margin: 10,
           preciseZoom: true
         }
       )
@@ -50,7 +50,7 @@ class Area extends Component {
       strokeWidth: 4,
       strokeColor: '#ff4500',
       strokeOpacity: 0.6,
-      fillColor: '#ffd530',
+      fillColor: '#ffd530',// ffd530
       fillOpacity: 0.4,
       openHintOnHover: false
     }

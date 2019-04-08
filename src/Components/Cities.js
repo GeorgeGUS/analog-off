@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { ObjectManager, withYMaps } from 'react-yandex-maps'
-import Channels from './Channels'
+import City from './City'
 
-class Pins extends Component {
-  static defaultProps = { pinScaleRatio: 8 }
-  state = { channels: null, ref: null }
+class Cities extends Component {
+  state = { objects: null, ref: null }
 
   componentDidMount() {
     this._isMounted = true;
@@ -19,40 +18,39 @@ class Pins extends Component {
   handleRef = (ref) => {
     this.setState({ ref });
     const { zoom } = this.props;
-    this.renderPinChannels(ref, zoom);
+    this.renderCities(ref, zoom);
   }
 
   handleResize = () => {
     const { ref } = this.state;
     const { zoom } = this.props;
-    this.renderPinChannels(ref, zoom);
+    this.renderCities(ref, zoom);
   }
 
   shouldComponentUpdate({ zoom }, { ref }) {
     if (this.props.zoom !== zoom) {
-      this.renderPinChannels(ref, zoom);
+      this.renderCities(ref, zoom);
     }
     return true;
   }
 
-  renderPinChannels = (ref, zoom) => {
+  renderCities = (ref, zoom) => {
     if (this._isMounted) {
-      const { pins, pinScaleRatio } = this.props;
+      const { cities } = this.props;
       const map = ref.getMap();
-      const channels = pins.map(pin => {
+      const objects = cities.map(pin => {
         const { city, channels, lat, len } = pin;
         const projection = map.options.get('projection');
         const center = map.converter.globalToPage(projection.toGlobalPixels([lat, len], zoom));
-        const scale = zoom / pinScaleRatio;
-        const props = { city, channels, center, scale };
-        return <Channels key={city} {...props} />;
+        const props = { city, channels, center };
+        return <City key={city} {...props} />;
       });
-      this.setState({ channels });
+      this.setState({ objects });
     }
   }
 
   render() {
-    const { channels } = this.state;
+    const { objects } = this.state;
     return (
       <>
         <ObjectManager
@@ -60,10 +58,10 @@ class Pins extends Component {
           clusters={{}}
           instanceRef={this.handleRef}
         />
-        {channels}
+        {objects}
       </>
     );
   }
 }
 
-export default withYMaps(Pins, true);
+export default withYMaps(Cities, true);
