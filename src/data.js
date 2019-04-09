@@ -316,7 +316,7 @@ export default [
   {
     city: "Пролетарий",
     lat: 58.400386,
-    len: 31.762703,
+    len: 31.782703,
     channels: [
       {
         id: "ch_1",
@@ -384,7 +384,7 @@ export default [
   },
   {
     city: "Хвойная",
-    lat: 58.906645,
+    lat: 58.936645,
     len: 34.491507,
     channels: [
       {
