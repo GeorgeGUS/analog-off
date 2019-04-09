@@ -3,8 +3,6 @@ import { YMaps, Map } from 'react-yandex-maps';
 import Area from './Components/Area';
 import Cities from './Components/Cities'
 import cities from './data';
-import './App.css';
-
 class App extends Component {
   state = {
     center: [58.19421684348514, 32.92976749999997],
@@ -23,6 +21,9 @@ class App extends Component {
     const { zoom } = this.state;
     return (
       <YMaps>
+        <h1 className="title">
+          Объекты аналогового вещания Новгородского ОРТПЦ
+        </h1>
         <Map state={this.state}
           options={{ avoidFractionalZoom: false }}
           instanceRef={this.handleRef}

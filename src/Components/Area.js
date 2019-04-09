@@ -33,7 +33,7 @@ class Area extends Component {
         mapBounds,
         map.container.getSize(),
         {
-          margin: 10,
+          margin: [80, 10, 10, 10],
           preciseZoom: true
         }
       )
