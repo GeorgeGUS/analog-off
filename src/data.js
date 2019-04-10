@@ -13,7 +13,7 @@ export default [
   {
     city: "Батецкий",
     lat: 58.655326,
-    len: 30.281819,
+    len: 30.341819,
     channels: [
       {
         id: "ch_5",

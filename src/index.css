@@ -16,14 +16,10 @@ body {
   margin-top: 0.5em;
   font-size: 2.8em;
   text-shadow: 
-    0 0 0.3em #edf2e6,
-    0 0 0.3em #edf2e6,
-    0 0 0.3em #edf2e6,
-    0 0 0.3em #edf2e6,
-    0 0 0.3em #edf2e6,
-    0 0 0.3em #edf2e6,
-    0 0 0.3em #edf2e6,
-    0 0 0.3em #edf2e6,
+    2px 2px #fafafa,
+    2px -2px #fafafa,
+    -2px 2px #fafafa,
+    -2px -2px #fafafa,
     0 0 0.3em #edf2e6,
     0 0 0.3em #edf2e6,
     0 0 0.3em #edf2e6,
@@ -58,16 +54,18 @@ body {
   line-height: 1;
   color: #234;
   text-shadow: 
-    0 0 0.3em #ffeca6,
-    0 0 0.3em #ffeca6,
-    0 0 0.3em #ffeca6,
-    0 0 0.3em #ffeca6,
-    0 0 0.3em #ffeca6,
-    0 0 0.3em #ffeca6,
-    0 0 0.3em #ffeca6,
-    0 0 0.3em #ffeca6,
-    0 0 0.3em #ffeca6,
-    0 0 0.3em #ffeca6;
+    1px 1px #f2f2f2,
+    1px -1px #f2f2f2,
+    -1px 1px #f2f2f2,
+    -1px -1px #f2f2f2,
+    0 0 0.5em #ffeca6,
+    0 0 0.5em #ffeca6,
+    0 0 0.5em #ffeca6,
+    0 0 0.5em #ffeca6,
+    0 0 0.5em #ffeca6,
+    0 0 0.5em #ffeca6,
+    0 0 0.5em #ffeca6,
+    0 0 0.5em #ffeca6;
   white-space: nowrap;
   
 }
