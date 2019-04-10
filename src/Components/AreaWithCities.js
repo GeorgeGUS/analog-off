@@ -12,7 +12,7 @@ class AreaWithCities extends Component {
       scale: null,
     };
     this.NovOblIndex = 32;
-    this.baseHeight = 990;
+    this.baseHeight = 990; // area height on Full HD screen with margins
     this.scaleRate = 0.95;
     this.areaProps = {
       margin: [80, 10, 10, 10],
@@ -20,8 +20,8 @@ class AreaWithCities extends Component {
     };
   }
 
-  handleRef = async (ref) => {
-    const map = await ref.getMap();
+  handleRef = (ref) => {
+    const map = ref.getMap();
     this.setState({ map });
     this.setCenter(map);
   }
