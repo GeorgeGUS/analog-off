@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { YMaps, Map } from 'react-yandex-maps';
-import Area from './Components/Area';
-import Cities from './Components/Cities'
+import AreaWithCities from './Components/AreaWithCities';
 import cities from './data';
 class App extends Component {
   state = {
@@ -9,16 +8,11 @@ class App extends Component {
     zoom: 8
   }
 
-  updateZoom = (zoom) => {
-    this.setState({ zoom });
-  }
-
   handleRef = (ref) => {
     ref.behaviors.disable(['drag', 'scrollZoom', 'dblClickZoom']);
   }
 
   render() {
-    const { zoom } = this.state;
     return (
       <YMaps>
         <h1 className="title">
@@ -28,8 +22,7 @@ class App extends Component {
           options={{ avoidFractionalZoom: false }}
           instanceRef={this.handleRef}
           width='100vw' height='100vh'>
-          <Area updateZoom={this.updateZoom} />
-          <Cities cities={cities} zoom={zoom} />
+          <AreaWithCities cities={cities} />
         </Map>
       </YMaps>
     );

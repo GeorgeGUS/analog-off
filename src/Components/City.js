@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
 import Channel from "./Channel";
 
-export default class City extends React.Component {
-  static defaultProps = { radius: 25, center: [0, 0], baseWidth: 1920 };
+export default class City extends Component {
+  static defaultProps = { center: [0, 0], scale: 1 };
 
   state = { isActive: true }
 
@@ -19,7 +19,7 @@ export default class City extends React.Component {
 
   renderChannels() {
     const { isActive } = this.state;
-    const {city, channels} = this.props;
+    const { city, channels } = this.props;
     return (
       <div className="channels">
         {channels.map((ch) => (
@@ -30,8 +30,7 @@ export default class City extends React.Component {
   }
 
   render() {
-    const { city, baseWidth, center: [x, y] } = this.props;
-    const scale = window.innerWidth / baseWidth;
+    const { city, scale, center: [x, y] } = this.props;
     const pos = {
       position: "absolute",
       left: `${x}px`,
@@ -42,7 +41,7 @@ export default class City extends React.Component {
       <div key={city} className="city" style={pos} onClick={this.setActive}>
         {this.renderFlagIcon()}
         <p className="city__title">{city}</p>
-        {this.renderChannels()}   
+        {this.renderChannels()}
       </div>
     );
   }
